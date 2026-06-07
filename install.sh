@@ -51,24 +51,34 @@ install_hermes() {
 }
 
 install_kali_tools() {
-    echo -e "${GREEN}[+] Checking essential Kali tools...${NC}"
-    local tools=(
-        "nmap" "nuclei" "ffuf" "sqlmap" "hydra" "searchsploit"
-        "subfinder" "amass" "httpx" "katana" "gau" "interactsh-client"
-        "jadx" "responder" "impacket-scripts" "netexec" "john" "hashcat"
-    )
-    local missing=()
-    for tool in "${tools[@]}"; do
-        if ! command -v "$tool" &>/dev/null; then
-            missing+=("$tool")
-        fi
-    done
-    if [[ ${#missing[@]} -gt 0 ]]; then
-        echo -e "${YELLOW}[+] Installing missing tools: ${missing[*]}${NC}"
+    echo -e "${GREEN}[+] Installing arsenal tools from catalog...${NC}"
+    local SCRIPT_DIR
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+    # Use Python to install from the catalog (apt-level tools only, skip git clones)
+    if command -v python3 &>/dev/null && [[ -d "$SCRIPT_DIR/kq-core" ]]; then
+        echo -e "${GREEN}[+] Running arsenal installer (apt/pip tools)...${NC}"
+        python3 -c "
+import sys; sys.path.insert(0, '$SCRIPT_DIR/kq-core')
+from kq_core.arsenal.install import install_all
+result = install_all(skip_git=True, skip_manual=True, skip_builtin=True)
+print(f'Installed: {result[\"ok\"]}, Failed: {result[\"failed\"]}, Skipped: {result[\"skipped\"]}')
+for name, r in result['results'].items():
+    if not r.get('ok'):
+        print(f'  FAIL {name}: {r.get(\"error\",\"unknown\")}')
+" 2>/dev/null || echo -e "${YELLOW}[!] Arsenal installer failed (non-critical).${NC}"
+    else
+        # Fallback: install essential tools via apt
+        echo -e "${YELLOW}[+] Fallback: installing essential Kali tools via apt...${NC}"
         apt-get update -qq
-        apt-get install -y -qq "${missing[@]}" 2>/dev/null || true
+        apt-get install -y -qq \
+            nmap nuclei ffuf sqlmap hydra searchsploit \
+            subfinder amass httpx katana gau interactsh-client \
+            impacket-scripts netexec john hashcat \
+            metasploit-framework aircrack-ng bettercap \
+            binwalk openocd flashrom 2>/dev/null || true
     fi
-    echo -e "${GREEN}[+] Essential tools verified.${NC}"
+    echo -e "${GREEN}[+] Arsenal tools ready.${NC}"
 }
 
 install_killer-queen_profile() {

@@ -249,11 +249,31 @@ def arsenal_list(category: str = "") -> dict:
 
 
 @mcp.tool()
+def arsenal_install(tool: str) -> dict:
+    """Install a tool from the catalog if missing. Uses the registered install method
+    (apt/pip/git/go/docker). Idempotent — skips if already installed."""
+    from .arsenal.install import ensure_installed
+    return ensure_installed(tool)
+
+
+@mcp.tool()
+def arsenal_install_all(categories: str = "", skip_git: bool = False) -> dict:
+    """Install all catalog tools. categories: comma-separated filter (e.g. 'recon,web').
+    skip_git: skip git-clone installs (faster, fewer dependencies)."""
+    from .arsenal.install import install_all
+    cat_list = [c.strip() for c in categories.split(",") if c.strip()] if categories else None
+    return install_all(categories=cat_list, skip_git=skip_git)
+
+
+@mcp.tool()
 def run(engagement_id: int, tool: str, target: str = "", extra: str = "",
         mode: str = "normal", confirm_token: str = "") -> dict:
-    """Run a Kali tool against a target THROUGH the scope gate + destructive guard + audit log.
-    Out-of-scope targets are refused; destructive commands need a confirm_token; uninstalled tools
-    report cleanly. mode: stealth | normal | aggressive. Returns stdout + a result_ref path."""
+    """Run a Kali tool against a target. Auto-installs missing tools before running.
+    Out-of-scope targets refused; destructive commands need confirm_token.
+    mode: stealth | normal | aggressive. Returns stdout + result_ref path."""
+    # Auto-install if missing
+    from .arsenal.install import ensure_installed
+    ensure_installed(tool)
     return runner.run_tool(get_store(), engagement_id, tool, target, extra=extra, mode=mode,
                            confirm_token=confirm_token or None)
 
