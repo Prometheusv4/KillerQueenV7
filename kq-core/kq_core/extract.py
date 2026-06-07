@@ -140,7 +140,7 @@ TECHNIQUE_PATTERNS: list[tuple[str, str, str, float, list[str]]] = [
 FACT_PATTERNS: list[tuple[str, str]] = [
     (r"(?i)(doesn'?t\s*work|not\s*work(?:ing)?|fails?\s*(?:on|with|when))", "pitfall"),
     (r"(?i)(requires|needs|must\s*have|prerequisite|depends?\s*on)", "requirement"),
-    (r"(?i)(bypass|workaround|alternative|instead\s*use|can\s*be\s*avoided)", "bypass"),
+    (r"(?i)(bypass|workaround|alternative|instead\s*use|can\s*be\s*avoided|\s+instead[\.\s,])", "bypass"),
     (r"(?i)(triggers?|sets?\s*off|detected\s*by|flags?\s*(?:an?\s*)?alert)", "detection_trigger"),
     (r"(?i)(version|patch|CVE-\d{4}-\d+|fixed\s*in|patched\s*in)", "version_note"),
     (r"(?i)(faster\s*than|slower\s*than|better\s*than|prefer\s*over)", "comparison"),
@@ -213,6 +213,10 @@ def extract_trigger_action(text: str) -> tuple[str, str]:
     """Extract IF/THEN or equivalent from text."""
     # Pattern 1: IF ... THEN ...
     m = re.search(r"(?i)if\s+(.{10,100}?)\s+then\s+(.{10,100})", text)
+    if m:
+        return m.group(1).strip(), m.group(2).strip()
+    # Pattern 1b: IF X, Y (no "then" — comma-separated)
+    m = re.search(r"(?i)if\s+(.{10,100}?),\s*(.{10,100})", text)
     if m:
         return m.group(1).strip(), m.group(2).strip()
     # Pattern 2: When X, Y
