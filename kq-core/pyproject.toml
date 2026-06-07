@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kq-core"
+version = "0.1.0"
+description = "Killer Queen Core — deterministic memory, learning, scope-guard and audit substrate. Full-spectrum autonomous offensive operations engine. 110 tools, 41 orchestrated tasks, 8 attack domains, 9,680 active learned lessons."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Killer Queen / Prometheus" }]
+keywords = ["security", "red-team", "agent", "memory", "mcp"]
+dependencies = [
+    "numpy>=1.24",
+    "pydantic>=2",
+    "pyyaml>=6",
+    "mcp>=1.2",
+]
+
+[project.optional-dependencies]
+# Semantic embeddings. Optional: with neither extra installed, KQ Core runs in
+# FTS5 keyword-only mode (fully functional, no semantic match). See kq_core/embeddings.py.
+embeddings = ["sentence-transformers>=2.2"]
+vec = ["sqlite-vec>=0.1"]
+dev = ["pytest>=7", "pyflakes>=3"]
+
+[project.scripts]
+kq = "kq_core.cli:main"
+kq-mcp = "kq_core.mcp_server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["kq_core"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,92 @@
+# Killer Queen — crimson/black offensive-operator skin for Hermes.
+# Activated via `display.skin: killer-queen` in config.yaml (installed to ~/.hermes/skins/).
+# Overrides the entire runtime look so Killer Queen never looks like stock Hermes.
+name: killer-queen
+description: Killer Queen — crimson offensive-security operator (dark, menacing, regal)
+
+colors:
+  banner_border: "#8B0000"          # dark blood-red panel border
+  banner_title: "#FF3131"           # neon crimson title
+  banner_accent: "#FF073A"          # scarlet section headers
+  banner_dim: "#5C0A0A"             # muted oxblood
+  banner_text: "#F2D9D9"            # bone / off-white with a red tint
+  ui_accent: "#FF073A"
+  ui_label: "#C0C0C0"               # steel/silver labels
+  ui_ok: "#00E676"                  # shell-popped green
+  ui_error: "#FF1744"
+  ui_warn: "#FFB300"
+  prompt: "#FF3131"
+  input_rule: "#8B0000"
+  response_border: "#FF073A"
+  status_bar_bg: "#140405"          # near-black, red tint
+  status_bar_text: "#E0C8C8"
+  status_bar_strong: "#FF3131"
+  status_bar_dim: "#6E4B4B"
+  status_bar_good: "#00E676"
+  status_bar_warn: "#FFB300"
+  status_bar_bad: "#FF6E40"
+  status_bar_critical: "#FF1744"
+  session_label: "#C0C0C0"
+  session_border: "#5C0A0A"
+  selection_bg: "#3A0A0A"
+  completion_menu_bg: "#140405"
+  completion_menu_current_bg: "#3A0A0A"
+  completion_menu_meta_bg: "#1A0607"
+  completion_menu_meta_current_bg: "#3A0A0A"
+
+spinner:
+  waiting_faces: ["(☠)", "(⌖)", "(#)", "(λ)", "(»)"]
+  thinking_faces: ["(☠)", "(⌖)", "(†)", "(¤)", "(»)"]
+  thinking_verbs:
+    - "enumerating"
+    - "mapping the attack surface"
+    - "fuzzing"
+    - "chaining primitives"
+    - "bypassing the WAF"
+    - "escalating"
+    - "pivoting"
+    - "forging the payload"
+    - "popping the shell"
+    - "exfiltrating"
+  wings:
+    - ["⟪☠", "☠⟫"]
+    - ["⟪⌖", "⌖⟫"]
+    - ["⟪»", "«⟫"]
+    - ["⟪#", "#⟫"]
+
+branding:
+  agent_name: "KILLER QUEEN"
+  welcome: "KILLER QUEEN online. Authorized engagements only — state your target."
+  goodbye: "Dynamite with a laser beam. ☠"
+  response_label: " ♛ KILLER QUEEN "
+  prompt_symbol: "♛"
+  help_header: "(☠) Operator Commands"
+
+tool_prefix: "▌"
+
+tool_emojis:
+  terminal: "☠"
+  web: "🌐"
+  web_search: "🛰"
+  browser: "🕷"
+  code_execution: "⚙"
+  memory: "🧬"
+  delegation: "♛"
+  file: "🗎"
+  search: "⌖"
+
+banner_logo: |
+  [bold #FF3131]  ██╗  ██╗██╗██╗     ██╗     ███████╗██████╗      ██████╗ ██╗   ██╗███████╗███████╗███╗   ██╗[/]
+  [bold #F0202A]  ██║ ██╔╝██║██║     ██║     ██╔════╝██╔══██╗    ██╔═══██╗██║   ██║██╔════╝██╔════╝████╗  ██║[/]
+  [#DC1422]  █████╔╝ ██║██║     ██║     █████╗  ██████╔╝    ██║   ██║██║   ██║█████╗  █████╗  ██╔██╗ ██║[/]
+  [#C20E1C]  ██╔═██╗ ██║██║     ██║     ██╔══╝  ██╔══██╗    ██║▄▄ ██║██║   ██║██╔══╝  ██╔══╝  ██║╚██╗██║[/]
+  [#A50A16]  ██║  ██╗██║███████╗███████╗███████╗██║  ██║    ╚██████╔╝╚██████╔╝███████╗███████╗██║ ╚████║[/]
+  [#8B0000]  ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝     ╚══▀▀═╝  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═══╝[/]
+
+banner_hero: |
+  [#FF073A]      ▟█▙   ▟█▙   ▟█▙      [/]
+  [#FF3131]      ███▆▆▆███▆▆▆███      [/]
+  [#DC1422]      ▜███████████████▛      [/]
+  [#A50A16]       ▀▀▀▀▀▀▀▀▀▀▀▀▀       [/]
+  [#8B0000]        ☠   ☠   ☠        [/]
+  [dim #6E1414]   dynamite · with a · laser beam   [/]

@@ -1,0 +1,1 @@
+/root/Killerx0ueen/docs/references/hackerone-bug-bounty-patterns.md

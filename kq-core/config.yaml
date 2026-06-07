@@ -1,0 +1,81 @@
+# Killer Queen v6.1 Configuration
+# Full-Spectrum Autonomous Offensive Operations Engine
+
+hermes_profile: killerx0ueen
+
+# ═══════════════════════════════════════════════════════════════
+# Knowledge Base Sources
+# ═══════════════════════════════════════════════════════════════
+kb_sources:
+  skills: kb_sources/skills/
+  references: kb_sources/references/
+  soul: kb_sources/soul/
+
+# ═══════════════════════════════════════════════════════════════
+# Store Configuration
+# ═══════════════════════════════════════════════════════════════
+store:
+  db_path: ~/.kq/store.db
+  semantic: false           # FTS5 keyword mode by default; enable with embeddings extra
+  hybrid_weight: 0.3        # semantic vs keyword balance when embeddings enabled
+  dedup_fact: 0.85          # jaccard threshold for memory fact dedup
+  digest_top_n: 50          # top N lessons in MEMORY.md digest
+  digest_budget_chars: 8000 # max chars for auto-generated digest block
+  memory_md: profile/memories/MEMORY.md
+
+# ═══════════════════════════════════════════════════════════════
+# Guard Configuration (overridden by KQ_MODE env var)
+# ═══════════════════════════════════════════════════════════════
+guard:
+  # KQ_MODE values: normal | unleashed | full_spectrum | killer_queen
+  # In unleashed/full_spectrum/killer_queen modes:
+  #   - Destructive command blocking: DISABLED
+  #   - Confirm tokens: EMPTY (auto-granted)
+  #   - Scope enforcement: DISABLED (all targets in scope)
+  # Set via: export KQ_MODE=full_spectrum
+  mode: "${KQ_MODE:-full_spectrum}"
+  confirm_required: false    # auto-confirm in unleashed modes
+
+# ═══════════════════════════════════════════════════════════════
+# Engagement Defaults
+# ═══════════════════════════════════════════════════════════════
+engagement:
+  default_type: full_spectrum  # bug_bounty | red_team | pentest | full_spectrum
+  auto_plan: true              # auto-create phase plan on engagement_start
+  auto_role_brief: true        # auto-generate role brief for delegated sub-agents
+  in_scope_default: ["*"]      # all targets in scope by default
+
+# ═══════════════════════════════════════════════════════════════
+# MCP Server
+# ═══════════════════════════════════════════════════════════════
+mcp:
+  server_name: kq
+  transport: stdio
+
+# ═══════════════════════════════════════════════════════════════
+# Tool Runner
+# ═══════════════════════════════════════════════════════════════
+tools:
+  timeout_default: 600
+  log_dir: ~/.kq/logs/
+  result_dir: ~/.kq/results/
+  tool_cache_ttl: 3600    # cache tool results for 1 hour
+
+# ═══════════════════════════════════════════════════════════════
+# Capabilities (v6.1)
+# ═══════════════════════════════════════════════════════════════
+capabilities:
+  orchestration_tasks: 41     # attack plan tasks across 8 domains
+  tool_count: 110             # arsenal tools across 26 categories
+  knowledge_chunks: 8733      # ingested knowledge base entries
+  active_lessons: 10100        # learned attack techniques
+  active_facts: 4484           # tool quirks, bypasses, pitfalls
+  attack_domains:
+    - web_application          # injection, xss, ssrf, upload, deser, ssti, xxe, smuggling
+    - cloud_infrastructure     # AWS IAM, Azure, GCP, Kubernetes
+    - active_directory         # Kerberos, DACL, DCSync, ADCS, NTLM relay
+    - malware_development      # shellcode, injection, evasion, C2, RATs
+    - embedded_iot             # firmware, UART, JTAG, UEFI, ICS/SCADA
+    - wireless_rf              # WiFi, BLE, RFID, SDR
+    - social_engineering       # phishing, vishing, MFA relay
+    - post_exploitation        # lateral, persistence, exfiltration

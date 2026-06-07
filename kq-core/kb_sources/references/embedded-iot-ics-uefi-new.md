@@ -1,0 +1,1 @@
+/root/Killerx0ueen/docs/references/embedded-iot-ics-uefi-new.md

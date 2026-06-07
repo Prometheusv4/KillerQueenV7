@@ -1,0 +1,22 @@
+# Prometheus — never commit these
+.env
+auth.json
+*.log
+logs/
+sessions/
+state.db
+*.lock
+__pycache__/
+*.pyc
+.DS_Store
+image_cache/
+audio_cache/
+bin/
+models_dev_cache.json
+.hermes_history
+processes.json
+pairing/
+pastes/
+sandboxes/
+*.tar.gz
+*.zip

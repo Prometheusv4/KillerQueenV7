@@ -1,0 +1,1 @@
+/root/Killerx0ueen/docs/references/hacktricks-batch1-xss-sqli.md

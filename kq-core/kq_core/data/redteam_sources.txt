@@ -1,0 +1,87 @@
+# Killer Queen — external knowledge source manifest
+# Ingest with:  kq ingest --sources kq_core/data/redteam_sources.txt   (ONLINE)
+# Format:  collection | url | optional,tags        (# = comment, blank lines skipped)
+# GitHub repo roots auto-resolve to the raw README (main, then master).
+#
+# Responsible-use: these are public security-research INDEXES / methodology / RCAs / disclosed
+# reports — ingested as retrievable knowledge (the mindset), not as weaponization. WAF/anti-bot
+# "bypass" entries are authorized-pentest methodology (knowledge, not a CAPTCHA-solving bot).
+# Third-party report AGGREGATORS are operator-discretion (respect each site's ToS / rate limits).
+
+# ── red-team tradecraft taxonomies + the testing standard ──
+redteam | https://github.com/Threekiii/Awesome-Redteam | taxonomy,tradecraft
+redteam | https://github.com/r3p3r/yeyintminthuhtut-Awesome-Red-Teaming | opsec,c2,infra
+redteam | http://www.pentest-standard.org/index.php/Main_Page | ptes,methodology
+meta_index | https://github.com/The-Art-of-Hacking/h4cker | meta,index
+
+# ── exploit development + reverse engineering ──
+exploit_dev | https://github.com/lolzc0de/Awesome-ExploitDev | curriculum
+exploit_dev | https://github.com/FabioBaroni/awesome-exploit-development | books,corelan
+exploit_dev | https://github.com/ByteHackr/WindowsExploitation | windows,rop,kernel
+exploit_dev | https://github.com/Vagebondcur/exploit-development-step-by-step | pwntools,handson
+
+# ── browser exploitation ──
+browser_pwn | https://github.com/m1ghtym0/browser-pwn | chromium,firefox,safari,v8
+browser_pwn | https://github.com/drtychai/browser-exploitation | nday,cves
+browser_pwn | https://github.com/Escapingbug/awesome-browser-exploit | v8,webkit
+browser_pwn | https://github.com/integeruser/on-pwning | writeups,sandbox-escape
+
+# ── mobile / kernel ──
+mobile | https://github.com/IdanBanani/iOS-Vulnerability-Research | ios,projectzero
+android_kernel | https://cloudfuzz.github.io/android-kernel-exploitation/ | android,kernel,lpe
+android_kernel | https://duasynt.com/training-android-exploit-dev | android,kernel,fuzzing
+
+# ── firmware / UEFI ──
+firmware | https://github.com/PreOS-Security/awesome-firmware-security | uefi,platform
+firmware | https://github.com/river-li/awesome-uefi-security | uefi,bios
+firmware | https://firmwaresecurity.com/tag/awesome/ | uefi,index
+
+# ── IoT / embedded / hardware ──
+iot_embedded | https://github.com/fkie-cad/awesome-embedded-and-iot-security | firmware-analysis,debug
+iot_embedded | https://github.com/IamAlch3mist/Awesome-Embedded-Systems-Vulnerability-Research | vr
+iot_embedded | https://github.com/kayranfatih/awesome-iot-and-hardware-security | expliot,hardware
+iot_embedded | https://github.com/hexsecs/awesome-embedded-security | tools
+
+# ── ICS / SCADA ──
+ics_scada | https://github.com/hslatman/awesome-industrial-control-system-security | plc,scada
+ics_scada | https://www.robertmlee.org/a-collection-of-resources-for-getting-started-in-icsscada-cybersecurity/ | getting-started
+ics_scada | https://www.infosecinstitute.com/resources/scada-ics-security/ics-scada-security-technologies-and-tools/ | defender-view
+
+# ── AI / LLM red-teaming (relevant to KQ's own attack surface) ──
+ai_redteam | https://github.com/shlomihod/awesome-ai-red-teaming | prompt-injection,llm
+
+# ── 0-day root-cause + academic research ──
+0day_rca | https://googleprojectzero.github.io/0days-in-the-wild/rca.html | projectzero,itw
+research_paper | https://www.usenix.org/conference/usenixsecurity25/cycle1-accepted-papers | usenix,2025
+
+# ── pwn2own + conference chaining writeups (multi-bug exploit narratives) ──
+pwn2own | https://labs.reversec.com/tags/pwn2own | writeups,chains
+pwn2own | https://github.com/0vercl0k/pwn2own2023-miami | opcua,uaf
+pwn2own | https://pwn2ooown.tech/ctf/writeup/2024/06/10/2024-AIS3-EOF-Pwn2own-Writeup | rop,ctf
+pwn2own | https://en.wikipedia.org/wiki/Pwn2Own | history
+conference | https://gist.github.com/naotokatsumi/e0672ebeeeb5f9a4dede1d1444feba5f | bhusa2017,notes
+
+# ── Orange Tsai — multi-layer chaining mindset (reverse proxy -> app -> cache) ──
+orange_tsai | https://github.com/orangetw/My-Presentation-Slides | parser-logic,cache,apache
+orange_tsai | https://blog.orange.tw/ | chains,web+binary
+
+# ── cloud attack paths (AWS IAM privesc, Pacu/CloudGoat) ──
+cloud | https://blog.pwnedlabs.io/beginners-guide-to-hunting-for-aws-iam-privilege-escalations-with-pacu | aws,iam,pacu
+cloud | https://github.com/RhinoSecurityLabs/pacu | aws,exploitation
+cloud | https://github.com/RhinoSecurityLabs/cloudgoat | aws,scenarios
+
+# ── research hubs ──
+research_hub | https://insights.nccgroup.com/annual-cyber-security-research-report-2025 | ncc
+
+# ── WAF / anti-bot bypass METHODOLOGY (authorized pentest; not a solver-bot) ──
+waf_bypass | https://pkg.go.dev/github.com/kslr/simple-cloudflare-bypass#section-readme | cloudflare,cookie-replay
+# NOTE: the GitHub /topics/ pages below are JS-rendered listings (low text yield); listed for completeness.
+waf_bypass | https://github.com/topics/cloudflare-bypass | listing
+waf_bypass | https://github.com/topics/bypass-cloudflare | origin-ip,crimeflare
+
+# ── disclosed bug-bounty reports (public; aggregators are operator-discretion / ToS) ──
+disclosed_report | https://hackerone.com/reports/3475626 | h1
+disclosed_report | https://hackerone.com/reports/2899858 | h1
+disclosed_report | https://www.ddosi.org/hackerone-report.html | h1,aggregator
+# bugboard aggregator + gitlab work item — add specific report URLs you want rather than bulk-scraping:
+# disclosed_report | https://bugboard.rsecloud.com/hackerone_reports | aggregator

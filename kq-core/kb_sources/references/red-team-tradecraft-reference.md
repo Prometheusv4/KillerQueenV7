@@ -1,0 +1,1 @@
+/root/Killerx0ueen/docs/references/red-team-tradecraft-reference.md

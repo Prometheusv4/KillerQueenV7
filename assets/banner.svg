@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 280" width="1200" height="280">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#1a0a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f0a0f;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="crown" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#c0a060;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ffd700;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#fff4e0;stop-opacity:0.5" />
+    </linearGradient>
+    <linearGradient id="text-main" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#c0a060" />
+      <stop offset="50%" style="stop-color:#ffd700" />
+      <stop offset="100%" style="stop-color:#e8c840" />
+    </linearGradient>
+    <linearGradient id="laser" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff0000;stop-opacity:0" />
+      <stop offset="30%" style="stop-color:#ff0040;stop-opacity:0.6" />
+      <stop offset="70%" style="stop-color:#ff2060;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#ff4060;stop-opacity:0" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="laserglow">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="280" fill="url(#bg)" />
+
+  <!-- Subtle grid -->
+  <g opacity="0.025">
+    <line x1="0" y1="40" x2="1200" y2="40" stroke="#c0a060" stroke-width="0.5"/>
+    <line x1="0" y1="80" x2="1200" y2="80" stroke="#c0a060" stroke-width="0.5"/>
+    <line x1="0" y1="120" x2="1200" y2="120" stroke="#c0a060" stroke-width="0.5"/>
+    <line x1="0" y1="160" x2="1200" y2="160" stroke="#c0a060" stroke-width="0.5"/>
+    <line x1="0" y1="200" x2="1200" y2="200" stroke="#c0a060" stroke-width="0.5"/>
+    <line x1="0" y1="240" x2="1200" y2="240" stroke="#c0a060" stroke-width="0.5"/>
+  </g>
+
+  <!-- Crown (left side) -->
+  <g transform="translate(85, 125)" filter="url(#glow)">
+    <!-- Crown base -->
+    <rect x="-35" y="15" width="70" height="18" rx="3" fill="#c0a060" opacity="0.9"/>
+    <rect x="-38" y="30" width="76" height="8" rx="2" fill="#8b7355" opacity="0.7"/>
+    <!-- Crown points -->
+    <polygon points="-35,15 -28,-10 -20,5 -10,-20 0,0 10,-20 20,5 28,-10 35,15" fill="url(#crown)" opacity="0.9"/>
+    <!-- Jewels -->
+    <circle cx="-18" cy="-2" r="4" fill="#ff2060" opacity="0.9"/>
+    <circle cx="0" cy="-8" r="5" fill="#ff0040" opacity="0.95"/>
+    <circle cx="18" cy="-2" r="4" fill="#ff2060" opacity="0.9"/>
+    <!-- Crown base jewels -->
+    <circle cx="-20" cy="22" r="3" fill="#40c0ff" opacity="0.7"/>
+    <circle cx="0" cy="24" r="3.5" fill="#40c0ff" opacity="0.8"/>
+    <circle cx="20" cy="22" r="3" fill="#40c0ff" opacity="0.7"/>
+  </g>
+
+  <!-- Laser beam (from crown rightward) -->
+  <g filter="url(#laserglow)">
+    <line x1="125" y1="125" x2="185" y2="125" stroke="url(#laser)" stroke-width="2" opacity="0.4"/>
+  </g>
+
+  <!-- Title: KILLER QUEEN -->
+  <text x="200" y="118" font-family="'Courier New', monospace" font-size="64" font-weight="bold" fill="url(#text-main)" filter="url(#glow)" letter-spacing="3">
+    KILLER QUEEN
+  </text>
+
+  <!-- Subtitle -->
+  <text x="205" y="158" font-family="'Courier New', monospace" font-size="17" fill="#c0a060" opacity="0.85" letter-spacing="7">
+    AUTONOMOUS OFFENSIVE SECURITY AGENT
+  </text>
+
+  <!-- Tagline -->
+  <text x="205" y="193" font-family="'Courier New', monospace" font-size="12" fill="#888" opacity="0.65" letter-spacing="2">
+    DYNAMITE WITH A LASER BEAM — GUARANTEED TO BLOW YOUR MIND
+  </text>
+
+  <!-- Decorative separator -->
+  <line x1="200" y1="213" x2="900" y2="213" stroke="#c0a060" stroke-width="0.5" opacity="0.25"/>
+
+  <!-- Bottom row: capabilities -->
+  <g font-family="'Courier New', monospace" font-size="11" fill="#666" opacity="0.5">
+    <text x="205" y="238">BUG BOUNTY</text>
+    <text x="330" y="238">RED TEAM</text>
+    <text x="440" y="238">EXPLOIT DEV</text>
+    <text x="570" y="238">ZERO-DAY</text>
+    <text x="680" y="238">OSINT</text>
+    <text x="760" y="238">POST-EXPLOIT</text>
+  </g>
+
+  <!-- Right side: small diamond -->
+  <g transform="translate(1100, 130)" opacity="0.25" filter="url(#glow)">
+    <polygon points="0,-12 8,0 0,12 -8,0" fill="#ffd700"/>
+  </g>
+</svg>

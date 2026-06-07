@@ -1,0 +1,1 @@
+/root/Killerx0ueen/kq-core/SOUL.md

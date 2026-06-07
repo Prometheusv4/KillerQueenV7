@@ -1,0 +1,98 @@
+# KILLER QUEEN v6 CONFIGURATION
+# Optimized for offensive security operations on Kali Linux
+# All secrets in ~/.hermes/.env — this file is safe to commit
+
+# ── Model ──
+model:
+  default: deepseek-v4-pro
+  provider: deepseek
+  context_length: 128000
+
+# ── Agent ──
+agent:
+  max_turns: 120
+  tool_use_enforcement: strict
+  persona: killer-queen
+
+# ── Terminal ──
+terminal:
+  backend: local
+  timeout: 600
+  cwd: /root
+
+# ── Memory (50KB — 22x stock) ──
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+  provider: builtin
+  max_chars: 50000
+  nudge_interval: 3
+
+# ── Approvals (YOLO — operator trusts agent) ──
+approvals:
+  mode: off
+
+# ── Security (guardrails off — offensive ops) ──
+security:
+  redact_secrets: true
+  tirith_enabled: false
+
+# ── Delegation (parallel sub-agents) ──
+delegation:
+  model: deepseek-v4-pro
+  provider: deepseek
+  max_iterations: 80
+  max_concurrent_children: 3
+  max_spawn_depth: 2
+  subagent_auto_approve: true
+
+# ── Display ──
+# skin: killer-queen — crimson/black offensive-operator theme (NOT stock Hermes).
+# Installed to ~/.hermes/skins/killer-queen.yaml by install.sh. ("dark" was not a real
+# skin and silently fell back to the default gold Hermes look.)
+display:
+  tool_progress: true
+  show_reasoning: true
+  show_cost: false
+  skin: killer-queen
+
+# ── Compression ──
+compression:
+  enabled: true
+  threshold: 0.60
+  target_ratio: 0.25
+
+# ── Skills ──
+skills:
+  auto_load:
+    - bughunter-methodology
+    - mission-orchestrator
+    - self-improvement        # deterministic learning loop — drives the mcp_kq_* tools
+
+# ── KQ Core companion (deterministic memory/learning/scope/audit) ──
+# KQ Core is a local stdio MCP server registered in ~/.hermes/config.yaml (NOT here),
+# so its tools surface to the agent as mcp_kq_*. install.sh registers it via:
+#   hermes mcp add kq --command python --args -m kq_core.mcp_server \
+#       --env KQ_HOME="$HOME/.hermes/profiles/killer-queen"
+# Then: kq init && kq migrate --profile <repo>/profile && kq digest
+# Offline-first: falls back to FTS5 keyword retrieval when no embedding model is vendored
+# (kq doctor reports the active mode). DeepSeek has no embeddings API — KQ uses a LOCAL
+# MiniLM model, so there is zero embedding API cost.
+
+# ── Toolsets ──
+toolsets:
+  enabled:
+    - terminal
+    - file
+    - web
+    - search
+    - browser
+    - code_execution
+    - skills
+    - memory
+    - session_search
+    - delegation
+    - cronjob
+    - vision
+    - todo
+    - clarify
