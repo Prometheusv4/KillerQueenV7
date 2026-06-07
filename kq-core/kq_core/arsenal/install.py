@@ -40,7 +40,7 @@ INSTALL_METHODS: dict[str, str] = {
 
     # ── Scanning ──
     "nmap":          "builtin",
-    "rustscan":      "apt:rustscan",
+    "rustscan":      "git:https://github.com/RustScan/RustScan",
     "masscan":       "apt:masscan",
     "naabu":         "apt:naabu",
     "sslscan":       "apt:sslscan",
@@ -61,8 +61,8 @@ INSTALL_METHODS: dict[str, str] = {
     # ── Web exploitation ──
     "sqlmap":        "apt:sqlmap",
     "commix":        "apt:commix",
-    "dalfox":        "apt:dalfox",
-    "crlfuzz":       "apt:crlfuzz",
+    "dalfox":        "go:github.com/hahwul/dalfox/v2",
+    "crlfuzz":       "go:github.com/dwisiswant0/crlfuzz/cmd/crlfuzz",
 
     # ── Credentials ──
     "hydra":         "apt:hydra",
@@ -82,10 +82,10 @@ INSTALL_METHODS: dict[str, str] = {
     # ── Cloud (apt/pip) ──
     "cloud-enum":    "apt:cloud-enum",
     "cloudbrute":    "apt:cloudbrute",
-    "prowler":       "pip:prowler",
-    "scoutsuite":    "pip:scoutsuite",
-    "pacu":          "pip:pacu",
-    "cloudmapper":   "pip:cloudmapper",
+    "prowler":       "git:https://github.com/prowler-cloud/prowler",
+    "scoutsuite":    "git:https://github.com/nccgroup/ScoutSuite",
+    "pacu":          "git:https://github.com/RhinoSecurityLabs/pacu",
+    "cloudmapper":   "git:https://github.com/duo-labs/cloudmapper",
     "enumerate-iam": "git:https://github.com/andresriancho/enumerate-iam",
     "pmapper":       "pip:principalmapper",
     "cloudsplaining":"pip:cloudsplaining",
